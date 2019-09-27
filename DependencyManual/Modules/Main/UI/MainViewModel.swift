@@ -10,25 +10,33 @@ import Foundation
 import RxSwift
 
 class MainViewModel {
-    private let userRepository: UserRepository
     
-    let navigation = PublishSubject<MainNavigation>()
-    let userProfile = PublishSubject<UserProfile?>()
+    var navigationObervable: Observable<MainNavigation> {
+        return navigation.asObservable()
+    }
     
-    init(userRepository: UserRepository) {
-        self.userRepository = userRepository
+    private let checkUserSession: CheckUserSession
+    private let disposeBag = DisposeBag()
+    private let navigation = PublishSubject<MainNavigation>()
+    
+    init(checkUserSession: CheckUserSession) {
+        self.checkUserSession = checkUserSession
     }
     
     func getUserProfile() {
-        userRepository.readUserSession().done { [unowned self] user in
-            self.userProfile.onNext(user)
-            if user != nil {
+        checkUserSession.run().subscribe(onSuccess: { [unowned self] bool in
+            if bool {
                 self.navigation.onNext(.home)
             } else {
                 self.navigation.onNext(.welcome)
             }
-        }.catch { [unowned self] _ in
-            self.userProfile.onError(SessionError.failedToReadUserSession)
-        }
+        }, onError: { [unowned self] error in
+            self.navigation.onNext(.welcome)
+            self.navigation.onError(SessionError.failedToReadUserSession)
+        }).disposed(by: disposeBag)
+    }
+    
+    func completeEvents() {
+        navigation.onCompleted()
     }
 }

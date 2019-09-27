@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import PromiseKit
+import RxSwift
 
 protocol UserRepository {
-    func readUserSession() -> Promise<UserProfile?>
+    func hasUserSession() -> Single<Bool>
 }

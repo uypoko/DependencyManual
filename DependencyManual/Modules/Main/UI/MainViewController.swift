@@ -14,15 +14,15 @@ class MainViewController: NiblessViewController {
     private let viewModel: MainViewModel
     private let disposeBag = DisposeBag()
     // Factories
-    private let homeViewController: () -> HomeViewController
-    private let welcomeViewController: () -> WelcomeViewController
+    private let homeViewControllerFactory: () -> HomeViewController
+    private let welcomeViewControllerFactory: () -> WelcomeViewController
     
     init(viewModel: MainViewModel,
-         homeViewController: @escaping () -> HomeViewController,
-         welcomeViewController: @escaping () -> WelcomeViewController) {
+        homeViewControllerFactory: @escaping () -> HomeViewController,
+        welcomeViewControllerFactory: @escaping () -> WelcomeViewController) {
         self.viewModel = viewModel
-        self.homeViewController = homeViewController
-        self.welcomeViewController = welcomeViewController
+        self.homeViewControllerFactory = homeViewControllerFactory
+        self.welcomeViewControllerFactory = welcomeViewControllerFactory
         super.init()
     }
     
@@ -33,21 +33,25 @@ class MainViewController: NiblessViewController {
     }
     
     func subscribe() {
-        viewModel.navigation.subscribe(onNext: { mainNavigation in
-            self.present(view: mainNavigation)
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
-        viewModel.userProfile.subscribe(onError: { error in
-            // present error
+        viewModel.navigationObervable.subscribe(
+                onNext: { [weak self] mainNavigation in
+                    guard let self = self else { return }
+                    self.present(view: mainNavigation)
             }).disposed(by: disposeBag)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.completeEvents()
     }
     
     func present(view: MainNavigation) {
         switch view {
         case .home:
-            self.navigationController?.pushViewController(homeViewController(), animated: true)
+            self.navigationController?.pushViewController(homeViewControllerFactory(), animated: true)
         case .welcome:
-            self.navigationController?.pushViewController(welcomeViewController(), animated: true)
+            self.navigationController?.pushViewController(welcomeViewControllerFactory(), animated: true)
         }
     }
 

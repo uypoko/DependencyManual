@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		942326E7233A1E6500A484FF /* CheckUserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942326E6233A1E6400A484FF /* CheckUserSession.swift */; };
 		A4D6DAAB233390EC00DF15DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6DAAA233390EC00DF15DD /* AppDelegate.swift */; };
 		A4D6DAAD233390EC00DF15DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6DAAC233390EC00DF15DD /* SceneDelegate.swift */; };
 		A4D6DAAF233390EC00DF15DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6DAAE233390EC00DF15DD /* ViewController.swift */; };
@@ -16,7 +17,6 @@
 		A4D6DAC22333918B00DF15DD /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6DAC12333918B00DF15DD /* AppDependencyContainer.swift */; };
 		A4D6DAD2233393BD00DF15DD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6DAD1233393BD00DF15DD /* UserProfile.swift */; };
 		A4D6DAD42333943900DF15DD /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6DAD32333943900DF15DD /* UserRepository.swift */; };
-		A4D6DAD62333950E00DF15DD /* GetUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6DAD52333950E00DF15DD /* GetUserProfile.swift */; };
 		A4DF43A623339777005BA810 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF43A523339777005BA810 /* SessionError.swift */; };
 		A4DF43A9233398CE005BA810 /* FakeAuthLocalAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF43A8233398CE005BA810 /* FakeAuthLocalAPI.swift */; };
 		A4F647B52335E303005BE445 /* MainNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F647B42335E303005BE445 /* MainNavigation.swift */; };
@@ -33,6 +33,7 @@
 /* Begin PBXFileReference section */
 		6C9F356C1B6283F081BCD4F2 /* Pods_DependencyManual.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DependencyManual.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCB3965FFA4296BCB626ED5 /* Pods-DependencyManual.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DependencyManual.release.xcconfig"; path = "Target Support Files/Pods-DependencyManual/Pods-DependencyManual.release.xcconfig"; sourceTree = "<group>"; };
+		942326E6233A1E6400A484FF /* CheckUserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckUserSession.swift; sourceTree = "<group>"; };
 		9C78622FBFE49DBB20A2E255 /* Pods-DependencyManual.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DependencyManual.debug.xcconfig"; path = "Target Support Files/Pods-DependencyManual/Pods-DependencyManual.debug.xcconfig"; sourceTree = "<group>"; };
 		A4D6DAA7233390EC00DF15DD /* DependencyManual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DependencyManual.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D6DAAA233390EC00DF15DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		A4D6DAC12333918B00DF15DD /* AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyContainer.swift; sourceTree = "<group>"; };
 		A4D6DAD1233393BD00DF15DD /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		A4D6DAD32333943900DF15DD /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		A4D6DAD52333950E00DF15DD /* GetUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfile.swift; sourceTree = "<group>"; };
 		A4DF43A523339777005BA810 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
 		A4DF43A8233398CE005BA810 /* FakeAuthLocalAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthLocalAPI.swift; sourceTree = "<group>"; };
 		A4F647B22335E272005BE445 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -101,7 +101,6 @@
 			children = (
 				A4F647BB2335F9A0005BE445 /* Reusable */,
 				A4D6DAC5233391C300DF15DD /* Modules */,
-				A4D6DAC32333919F00DF15DD /* Shared */,
 				A4D6DAAA233390EC00DF15DD /* AppDelegate.swift */,
 				A4D6DAAC233390EC00DF15DD /* SceneDelegate.swift */,
 				A4D6DAAE233390EC00DF15DD /* ViewController.swift */,
@@ -114,26 +113,11 @@
 			path = DependencyManual;
 			sourceTree = "<group>";
 		};
-		A4D6DAC32333919F00DF15DD /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				A4D6DAC4233391AD00DF15DD /* UserSession */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		A4D6DAC4233391AD00DF15DD /* UserSession */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserSession;
-			sourceTree = "<group>";
-		};
 		A4D6DAC5233391C300DF15DD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				A4F647C52335FBC1005BE445 /* Home */,
 				A4D6DACE2333937A00DF15DD /* Main */,
+				A4F647C52335FBC1005BE445 /* Home */,
 				A4D6DAC6233391CB00DF15DD /* Welcome */,
 			);
 			path = Modules;
@@ -175,7 +159,7 @@
 		A4D6DACA2333929800DF15DD /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				A4D6DAD52333950E00DF15DD /* GetUserProfile.swift */,
+				942326E6233A1E6400A484FF /* CheckUserSession.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -377,13 +361,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4F647C12335F9C0005BE445 /* NiblessView.swift in Sources */,
-				A4D6DAD62333950E00DF15DD /* GetUserProfile.swift in Sources */,
 				A4D6DAAF233390EC00DF15DD /* ViewController.swift in Sources */,
 				A4D6DAAB233390EC00DF15DD /* AppDelegate.swift in Sources */,
 				A4F647B72335F76C005BE445 /* MainViewController.swift in Sources */,
 				A4F647C92335FC52005BE445 /* WelcomeViewController.swift in Sources */,
 				A4F647C42335FB9B005BE445 /* MainViewModel.swift in Sources */,
 				A4DF43A623339777005BA810 /* SessionError.swift in Sources */,
+				942326E7233A1E6500A484FF /* CheckUserSession.swift in Sources */,
 				A4F647B52335E303005BE445 /* MainNavigation.swift in Sources */,
 				A4F647C32335F9C0005BE445 /* NiblessViewController.swift in Sources */,
 				A4D6DAD42333943900DF15DD /* UserRepository.swift in Sources */,
@@ -540,6 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25YD4528FX;
 				INFOPLIST_FILE = DependencyManual/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -559,6 +544,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25YD4528FX;
 				INFOPLIST_FILE = DependencyManual/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

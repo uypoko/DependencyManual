@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import PromiseKit
+import RxSwift
 
 struct FakeAuthLocalAPI: UserRepository {
     // MARK: - Properties
@@ -17,20 +17,23 @@ struct FakeAuthLocalAPI: UserRepository {
     }
 
     // MARK: - Methods
-
-    public func readUserSession() -> Promise<UserProfile?> {
-      return Promise() { seal in
-        guard let docsURL = docsURL else {
-            seal.reject(SessionError.failedToReadUserSession)
-          return
-        }
-        guard let jsonData = try? Data(contentsOf: docsURL.appendingPathComponent("user_session.json")) else {
-          seal.fulfill(nil)
-          return
-        }
-        let decoder = JSONDecoder()
-        let userSession = try! decoder.decode(UserProfile.self, from: jsonData)
-        seal.fulfill(userSession)
-      }
+    
+    func hasUserSession() -> Single<Bool> {
+        return Single<Bool>.create(subscribe: { single in
+            guard let docsURL = self.docsURL else {
+                single(.error(SessionError.failedToReadUserSession))
+                return Disposables.create()
+            }
+            
+            let decoder = JSONDecoder()
+            if let jsonData = try? Data(contentsOf: docsURL.appendingPathComponent("user_session.json")),
+                (try? decoder.decode(UserProfile.self, from: jsonData)) != nil {
+                single(.success(true))
+            } else {
+                single(.success(false))
+            }
+            
+            return Disposables.create()
+        })
     }
 }
